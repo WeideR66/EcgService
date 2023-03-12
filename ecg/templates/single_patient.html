@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block main_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <p></p>
+            <p class="fs-2">Пациент: {{data}}</p>
+            <p></p>
+            <p class="fs-2">Дата проведения ЭКГ: {{ data.date_time|date:"d-m-Y H:i:s" }}</p>
+            <p></p>
+            <p class="fs-2">Врач: {{data.doctor}}</p>
+            <p class="fs-2">ЭКГ:</p>
+            <p></p>
+            <figure class="figure">
+                <img src="{{ data.results.ecg_image.url}}" class="figure-img img-fluid rounded"
+                     alt="...">
+                <figcaption class="figure-caption">Запись ЭКГ пацента.</figcaption>
+            </figure>
+            <p></p>
+            <p class="fs-2">Предварительный диагноз:</p>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Нормальный синусовый ритм</th>
+                    <th scope="col">Аритмия</th>
+                    <th scope="col">Мерцательная аритмия</th>
+                    <th scope="col">Злокачественная желудочная эктопия</th>
+                    <th scope="col">Наджелудочковая аритмия</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ data.results.normal }}</td>
+                    <td>{{ data.results.arrhythm }}</td>
+                    <td>{{ data.results.atrial_fib }}</td>
+                    <td>{{ data.results.mal_vent_ect }}</td>
+                    <td>{{ data.results.sup_arrh }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <p></p>
+            <p></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

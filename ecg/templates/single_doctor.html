@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <p></p>
+            <p class="fs-2">Врач: {{doc.doctor}}</p>
+            <p class="fs-2">Должность: {{doc.doctor.job_title}}</p>
+            <p></p>
+            <p class="fs-2">Пациенты:</p>
+            {% for patient in patients %}
+            <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{% url 'patient' patient.pk %}" class="card-link">
+                            {{ patient }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

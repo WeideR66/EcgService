@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block main_content %}
+<div class="container">
+    <div class="col-8">
+        <p class="fs-1">Врачи</p>
+    </div>
+</div>
+{% for doctor in doctors %}
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <p></p>
+            <div class="card text-center">
+                <div class="card-body">
+                    <a href="{% url 'doctor' doctor.pk %}" class="card-link">
+                        <p class="fw-semibold">
+                            {{doctor.doctor_surname}} {{doctor.doctor_name}}
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

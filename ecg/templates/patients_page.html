@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block main_content %}
+<div class="container">
+    <div class="col-8">
+        <p class="fs-1">Пациенты</p>
+    </div>
+</div>
+{% for patient in patients %}
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <p></p>
+            <div class="card text-center">
+                <p class="card-header">Лечащий врач: {{ patient.doctor }}</p>
+                <div class="card-body">
+                    <h5 class="card-title">Пациент: {{ patient }}</h5>
+                    <a href="{% url 'patient' patient.pk %}" class="btn btn-primary">Данные ЭКГ пациента</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}
