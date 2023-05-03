@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block login_user %}
+<h1>Вход в систему</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ dat.as_p }}
+    <button type="submit" class="btn btn-primary btn_block">Войти</button>
+</form>
+{% endblock %}

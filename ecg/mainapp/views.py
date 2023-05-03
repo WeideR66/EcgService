@@ -1,10 +1,30 @@
 from django.shortcuts import render, redirect
 from .models import Doctor, Patient, EcgData
-from .forms import PatientCreationForm
+from .forms import PatientCreationForm, UserAuthForm
+from django.contrib.auth import login, logout
+
+
+def login_user(request):
+    if request.method == 'POST':
+        data = UserAuthForm(data=request.POST)
+        if data.is_valid():
+            login(request, data.get_user())
+            return redirect('home')
+    else:
+        data = UserAuthForm()
+    return render(request,
+                  template_name='index.html',
+                  context={'dat': data})
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('login_user')
 
 
 def home_page(request):
-    return render(request, template_name='main_page.html')
+    return render(request,
+                  template_name='main_page.html')
 
 
 def patients_page(request):

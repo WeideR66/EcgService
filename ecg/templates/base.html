@@ -9,7 +9,11 @@
 </head>
 <body>
 {% include 'navbar.html' %}
+{% if request.user.is_authenticated %}
 {% block main_content %}{% endblock %}
+{% else %}
+{% block login_user %}{% endblock %}
+{% endif %}
 <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 from django import forms
 from django.core.validators import FileExtensionValidator
+from django.contrib.auth.forms import AuthenticationForm
 from .models import Doctor
 
 
@@ -21,3 +22,14 @@ class PatientCreationForm(forms.Form):
                                                                allowed_extensions=('hea', 'dat'),
                                                                message='Файлы должны иметь разрешение .hea/.dat'
                                                                )])
+
+
+class UserAuthForm(AuthenticationForm):
+    username = forms.CharField(label='Имя пользователя',
+                               widget=forms.TextInput(
+                                   attrs={'class': 'form-control'}
+                               ))
+    password = forms.CharField(label='Пароль',
+                               widget=forms.PasswordInput(
+                                   attrs={'class': 'form-control'}
+                               ))
